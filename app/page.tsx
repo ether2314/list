@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react";
 
+export const metadata = {
+  title: "My To-Do List App | Stay Organized",
+  description: "A simple and SEO-friendly To-Do list app built with Next.js.",
+  keywords: ["To-Do List", "Next.js", "Productivity App", "SEO", "Tasks"],
+};
+
 export default function HomePage() {
   const [tasks, setTasks] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
