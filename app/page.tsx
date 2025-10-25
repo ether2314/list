@@ -32,7 +32,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4">To-Do List</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">Task List</h1>
 
         <div className="flex gap-2 mb-4">
           <input
