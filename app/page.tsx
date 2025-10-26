@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-// Define task structure
 type Task = {
   text: string;
-  status: string | null; // 'Not Started' | 'In Progress' | 'Completed' | null
+  status: string | null;
 };
 
 export default function HomePage() {
-  // Load tasks from localStorage
   const [tasks, setTasks] = useState<Task[]>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("tasks");
@@ -20,12 +18,10 @@ export default function HomePage() {
 
   const [input, setInput] = useState("");
 
-  // Save tasks to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // Add new task
   const addTask = () => {
     if (input.trim() === "") return;
     const newTask: Task = { text: input, status: null };
@@ -33,21 +29,17 @@ export default function HomePage() {
     setInput("");
   };
 
-  // Delete task
   const deleteTask = (index: number) => {
     const newTasks = tasks.filter((_, i) => i !== index);
     setTasks(newTasks);
   };
 
-  // Toggle task status
   const toggleStatus = (index: number) => {
     const statusOrder = [null, "Not Started", "In Progress", "Completed"];
     setTasks((prevTasks) =>
       prevTasks.map((task, i) => {
         if (i !== index) return task;
-
         const currentIndex = statusOrder.indexOf(task.status);
-        // Move to next status (loop back to null)
         const nextStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
         return { ...task, status: nextStatus };
       })
@@ -55,18 +47,20 @@ export default function HomePage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4">Task List</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 text-black">
 
-        {/* Input section */}
+      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center mb-4 text-black">
+          Task List
+        </h1>
+
         <div className="flex gap-2 mb-4">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Add a new task..."
-            className="border border-gray-300 rounded-lg p-2 flex-1"
+            className="border border-gray-300 rounded-lg p-2 flex-1 text-black placeholder-black"
           />
           <button
             onClick={addTask}
@@ -76,15 +70,14 @@ export default function HomePage() {
           </button>
         </div>
 
-        {/* Task list */}
         <ul className="space-y-2">
           {tasks.map((task, index) => (
             <li
               key={index}
-              className="flex justify-between items-center bg-gray-50 p-2 rounded-lg border"
+              className="flex justify-between items-center bg-gray-50 p-2 rounded-lg border text-black"
             >
               <div className="flex flex-col">
-                <span className="font-medium">{task.text}</span>
+                <span className="font-medium text-black">{task.text}</span>
                 {task.status && (
                   <span
                     className={`text-sm mt-1 ${
@@ -92,7 +85,7 @@ export default function HomePage() {
                         ? "text-green-600"
                         : task.status === "In Progress"
                         ? "text-yellow-600"
-                        : "text-gray-500"
+                        : "text-gray-600"
                     }`}
                   >
                     {task.status}
