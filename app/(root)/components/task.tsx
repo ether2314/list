@@ -54,24 +54,25 @@ function HomePage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 text-black w-full">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 sm:p-6 text-black w-full">
       {/* Task Input Section */}
       <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-5xl">
         <h1 className="text-3xl font-bold text-center mb-6 text-black">
           Task List
         </h1>
 
-        <div className="flex gap-2 mb-6 w-full">
+        {/* Input & Add Button Section */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 w-full">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Add a new task..."
-            className="border border-gray-300 rounded-lg p-3 flex-1 text-black placeholder-gray-600"
+            className="border border-gray-300 rounded-lg p-3 flex-1 text-black placeholder-gray-600 w-full sm:w-auto"
           />
           <button
             onClick={addTask}
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-6 py-3"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-6 py-3 w-full sm:w-auto"
           >
             Add
           </button>
@@ -110,7 +111,7 @@ function HomePage() {
       </div>
 
       {/* Completed Tasks Table */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-5xl mt-8">
+      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-5xl mt-8 overflow-x-auto">
         <h2 className="text-2xl font-bold text-center mb-4 text-black">
           Tasks Completed
         </h2>
@@ -120,7 +121,7 @@ function HomePage() {
             No completed tasks yet.
           </p>
         ) : (
-          <table className="w-full border border-gray-300 text-left">
+          <table className="w-full border border-gray-300 text-left min-w-[400px]">
             <thead className="bg-gray-100">
               <tr>
                 <th className="border px-4 py-2">Task</th>
