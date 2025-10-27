@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "My To-Do List App",
     description: "A simple To-Do list app built with Next.js.",
     keywords: ["To-Do List", "Next.js", "Productivity App", "SEO", "Tasks"],
-   };
+};
 
 export default function RootLayout({
   children,
